@@ -10,7 +10,7 @@ questions = {
     3: 'Is your character a man?',
     4: 'Is your character short?',
 }
-
+# If probablity is 0 related answer is 0 
 characters = [
     {'name': 'Homer Simpson',         'answers': {1: 1, 2: 1, 3: 1, 4: 0}},
     {'name': 'SpongeBob SquarePants', 'answers': {1: 1, 2: 1, 3: 1, 4: 0.75}},
@@ -75,13 +75,13 @@ def calculate_character_probability(character, questions_so_far, answers_so_far)
     P_answers = P_character * P_answers_given_character + \
         (1 - P_character) * P_answers_given_not_character
 
-    # Bayes Theorem
+    # Apply Naive Bayes 
     P_character_given_answers = (
         P_answers_given_character * P_character) / P_answers
 
     return P_character_given_answers
 
-
+# If undifiend probabilty count as 0.5
 def character_answer(character, question):
     if question in character['answers']:
         return character['answers'][question]
